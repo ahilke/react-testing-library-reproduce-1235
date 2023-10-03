@@ -29,7 +29,7 @@ describe("FilterSection", () => {
           title={title}
           attributeFrom={attributeFrom}
           attributeTo={attributeTo}
-          // filterDispatch={filterDispatch}
+          filterDispatch={filterDispatch}
           filterState={filterState}
           maxDate={moment().add(1, "year")}
         />,
@@ -45,13 +45,13 @@ describe("FilterSection", () => {
 
       await userEvent.click(todayButton);
 
-      // expect(filterDispatch).toHaveBeenCalledWith({
-      //   type: "setFilterState",
-      //   payload: {
-      //     [attributeFrom]: moment().startOf("day"),
-      //     [attributeTo]: moment().endOf("day").toISOString(),
-      //   },
-      // });
+      expect(filterDispatch).toHaveBeenCalledWith({
+        type: "setFilterState",
+        payload: {
+          [attributeFrom]: moment().startOf("day"),
+          [attributeTo]: moment().endOf("day").toISOString(),
+        },
+      });
 
       expect(fromInput).toHaveValue(moment().startOf("day").format("DD.MM.YYYY"));
       expect(toInput).toHaveValue(moment().endOf("day").format("DD.MM.YYYY"));

@@ -1,15 +1,15 @@
-import { FilterAccordion } from "../FilterAccordion";
-// import type { Dispatch } from 'react';
-// import type { UseFilterAction } from '@/hooks/useFilter';
-import { DateRangePicker } from "../DateRangePicker";
 import moment from "moment";
+import type { Dispatch } from "react";
+import { DateRangePicker } from "../DateRangePicker";
+import { FilterAccordion } from "../FilterAccordion";
+import type { UseFilterAction } from "../useFilter";
 
 interface FilterDateRangeProps<T> {
   title: string;
   attributeFrom: keyof T;
   attributeTo: keyof T;
   filterState: T;
-  // filterDispatch: Dispatch<UseFilterAction<T>>;
+  filterDispatch: Dispatch<UseFilterAction<T>>;
   disabled?: boolean;
   maxDate: moment.Moment;
 }
@@ -18,7 +18,7 @@ export const FilterDateRangePicker = <T extends Record<string, string | null>>({
   title,
   attributeFrom,
   attributeTo,
-  // filterDispatch,
+  filterDispatch,
   filterState,
   disabled,
   maxDate,
@@ -27,10 +27,10 @@ export const FilterDateRangePicker = <T extends Record<string, string | null>>({
     <FilterAccordion
       title={title}
       onClear={() => {
-        // filterDispatch({
-        //   type: 'clearFilter',
-        //   attributes: [attributeFrom, attributeTo],
-        // });
+        filterDispatch({
+          type: "clearFilter",
+          attributes: [attributeFrom, attributeTo],
+        });
       }}
       disableClear={!(filterState[attributeFrom] || filterState[attributeTo])}
     >
@@ -44,10 +44,10 @@ export const FilterDateRangePicker = <T extends Record<string, string | null>>({
         onAccept={(value) => {
           const [from, to] = value;
           const toEod = to ? to.endOf("day").toISOString() : null;
-          // filterDispatch({
-          //   type: 'setFilterState',
-          //   payload: { [attributeFrom]: from, [attributeTo]: toEod },
-          // });
+          filterDispatch({
+            type: "setFilterState",
+            payload: { [attributeFrom]: from, [attributeTo]: toEod },
+          });
         }}
         disabled={!!disabled}
         sx={{
