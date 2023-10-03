@@ -1,7 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import moment from "moment";
-import { beforeEach, describe, it, vi, expect } from "vitest";
 import { FilterDateRangePicker } from ".";
 import { FiltersTestWrapper } from "../__tests__/wrapper.mock";
 

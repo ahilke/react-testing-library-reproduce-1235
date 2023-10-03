@@ -3,7 +3,6 @@ import { useCallback, useEffect, useReducer, useState } from "react";
 import _ from "lodash";
 import { useLocalStorage } from "react-use";
 import { useAsyncState } from "./useAsyncState";
-// import { useParams } from 'react-router-dom';
 
 export type UseFilterAction<T> =
   | {
@@ -56,9 +55,6 @@ export const useFilter = <TInitialState extends {}>({
   storageKey,
   suppressLocalStorage,
 }: UseFilterProps<TInitialState>) => {
-  // const { projectId } = useParams<{
-  //   projectId: string;
-  // }>();
   const projectId = "projectId";
   const [isInitialState, setIsInitialState] = useState(false);
 
